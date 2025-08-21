@@ -17,7 +17,7 @@ RUN apt update && apt install -y \
 RUN npm i
 
 RUN chmod +x scripts/*.sh
-RUN chmod +x data/*
+RUN mkdir -p /app/data/sessions && chown -R node:node /app/data
 
 EXPOSE 8000
 
