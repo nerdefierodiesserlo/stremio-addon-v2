@@ -11,8 +11,8 @@ export default class UserSession {
     cookies: Cookie[] | null = null;
     logService = LogService;
 
-    async createSession(pageUrl: string): Promise<void> {
-        const browser = await this.launchBrowser();
+    async createSession(pageUrl: string, unsafelyOrigins: string[]): Promise<void> {
+        const browser = await this.launchBrowser(unsafelyOrigins);
         try {
             const page: Page = await browser.newPage();
             await page.setExtraHTTPHeaders({ 'Upgrade-Insecure-Requests': '0' });
@@ -36,18 +36,21 @@ export default class UserSession {
         }
     }
 
-    async launchBrowser(): Promise<Browser> {
+    async launchBrowser(unsafelyOrigins: string[]): Promise<Browser> {
+        let args = [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-features=UpgradeInsecureRequests',
+            '--disable-features=BlockInsecurePrivateNetworkRequests',
+            '--allow-running-insecure-content',
+            '--ignore-certificate-errors'
+        ];
+        if (unsafelyOrigins && unsafelyOrigins.length>0) {
+            args.push(`--unsafely-treat-insecure-origin-as-secure=${unsafelyOrigins.join(",")}`);
+        }
         const puppeteerConfig: LaunchOptions = {
             headless: true,
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-features=UpgradeInsecureRequests',
-                '--disable-features=BlockInsecurePrivateNetworkRequests',
-                '--allow-running-insecure-content',
-                '--ignore-certificate-errors',
-                '--unsafely-treat-insecure-origin-as-secure=http://www.rojadirecta.eu'
-            ]
+            args
         };
 
         if (process.env.PUPPETEER_PATH) {

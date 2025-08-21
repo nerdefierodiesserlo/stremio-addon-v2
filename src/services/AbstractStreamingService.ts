@@ -25,6 +25,7 @@ export abstract class AbstractStreamingService {
     protocol: string;
     host: string;
     baseURL!: string;
+    unsafelyOrigins: string[] = [];
 
     constructor(serviceCode: string, mediaType: string, protocol: string, host: string) {
         if (new.target === AbstractStreamingService) {
@@ -60,17 +61,21 @@ export abstract class AbstractStreamingService {
         return this;
     }
 
+    setUnsafelyOrigins(unsafelyOrigins: string[]) {
+        this.unsafelyOrigins = unsafelyOrigins;
+    }
+
     async initSession(): Promise<void> {
         const domain = await DomainService.getDomain(this.serviceCode);
         if (!domain) {
             throw new Error(`Dominio non trovato per il codice: ${this.serviceCode}`);
         }
         this.baseURL = domain.baseURL;
-        await this.userSession.createSession(this.baseURL);
+        await this.userSession.createSession(this.baseURL, this.unsafelyOrigins);
     }
 
     async sniffM3u8(url: string): Promise<M3U8Object | null> {
-        const browser = await this.userSession.launchBrowser();
+        const browser = await this.userSession.launchBrowser(this.unsafelyOrigins);
         const page = await browser.newPage();
 
         if (this.userSession.userAgent) {

@@ -6,12 +6,15 @@ import { Meta } from '@models/Meta';
 export class RojadirectaService extends AbstractStreamingService {
     constructor(mediaType: string, protocol: string, host: string) {
         super('rojadirecta', mediaType, protocol, host);
+        this.setUnsafelyOrigins([
+            'http://www.rojadirecta.eu'
+        ]);
     }
 
     async getMediaLinks(id: string): Promise<StreamObject[]> {
         let streamList: StreamObject[] = [];
         try {
-            const mediaId = id.replace("havestream-rojadirecta-", "");
+            const mediaId = id.replace(`havestream-${this.serviceCode}-`, "");
             if (mediaId) {
                 const headers = this.userSession.headers ?? {};
                 const response = await this.client.get(this.baseURL, { headers });
@@ -61,7 +64,7 @@ export class RojadirectaService extends AbstractStreamingService {
             const time = $(el).find('span.t').first().text().replace(/\s+/g, ' ').trim();
             const title = $(el).find('span[itemprop="name"]').text().replace(/\s+/g, ' ').trim();
             return {
-                id: `havestream-rojadirecta-${index}`,
+                id: `havestream-${this.serviceCode}-${index}`,
                 name: `(${time}) ${title}`,
                 description: 'Nessuna descrizione disponibile',
                 type: 'tv',
@@ -73,7 +76,7 @@ export class RojadirectaService extends AbstractStreamingService {
     }
 
     async getTvChannelMeta(id: string): Promise<Meta> {
-        const mediaId = id.replace("havestream-rojadirecta-", "");
+        const mediaId = id.replace(`havestream-${this.serviceCode}`, "");
         let meta = {
             id,
             name: `Nessun nome trovato`,
