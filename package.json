@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node -r tsconfig-paths/register ./bin/www",
-    "dev": "ts-node-dev -r tsconfig-paths/register ./bin/www"
+    "start": "NODE_ENV=prod ts-node -r tsconfig-paths/register ./bin/www",
+    "dev": "NODE_ENV=dev ts-node-dev -r tsconfig-paths/register ./bin/www"
   },
   "keywords": [],
   "author": "",
