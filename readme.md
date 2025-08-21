@@ -1,3 +1,13 @@
+---
+title: IHaveAStream
+emoji: 🌍
+colorFrom: purple
+colorTo: pink
+sdk: docker
+pinned: true
+app_port: 8000
+---
+
 # IHaveAStream
 
 This is a **Stremio addon** that integrates external video streams into the platform.  
