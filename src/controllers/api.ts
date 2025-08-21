@@ -13,7 +13,7 @@ export const updateDomain = async (req: Request, res: Response) => {
         let domainObj = {
             code,
             baseURL,
-            active: UtilityHelper.stringToBool(active)
+            active: active
         };
         await DomainService.updateDomainByCode(code, domainObj);
     }

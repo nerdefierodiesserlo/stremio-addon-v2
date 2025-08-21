@@ -54,7 +54,7 @@
             tableBody.innerHTML = '';
 
             domains.forEach(domain => {
-                let isActive = domain.active === "true";
+                let isActive = domain.active == true;
                 let row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${domain.code}</td>
@@ -106,7 +106,7 @@
             let input = document.getElementById(`input-${code}`);
             let baseURL = input.value;
             let isActive = document.getElementById(`active-${code}`).checked;
-            let active = isActive ? "true" : "false";
+            let active = isActive ? true : false;
 
 
             let response = await fetch('/api/domains/'+code, {

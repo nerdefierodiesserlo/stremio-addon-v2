@@ -45,3 +45,49 @@ The reason is that, in most cases, access to decryption keys is deliberately mad
 Handling the different ways keys are distributed is complex and highly inconsistent, especially since there may be many providers with very different implementations.  
 
 As a result, only **unencrypted streams** are processed and made available, while encrypted ones are skipped.
+
+
+# Instal
+## Run on local
+``` 
+npm i 
+npm start
+```
+## Run with docker
+``` 
+docker compose up -d
+```
+## Run on Hugging Face space
+✅ **Step-by-step: Deploy your Space to Hugging Face**
+
+1. 👤 **Create an account** on Hugging Face [here](https://huggingface.co/join).
+
+2. 🚀 **Create a new Space** [here](https://huggingface.co/new-space)  
+   - Select ***Docker + Blank*** as the Space SDK  
+   - Make it **public**
+
+3. 🔑 **Create a new token** [here](https://huggingface.co/settings/tokens) and **copy** it  
+   - Check all permissions related to ***Repositories***:  
+     - Read access to contents of all repos under your personal namespace  
+     - Read access to contents of all public gated repos you can access  
+     - Write access to contents/settings of all repos under your personal namespace
+
+4. 🍴 **Fork the repository**  
+   - Click ***Fork*** → ***Create New Fork*** → ***Create One***
+
+5. ⚙️ **Add secrets and variables**  
+   - Go to ***Settings*** → ***Secrets and variables*** → ***Actions***  
+   - **Secrets tab:** add a new ***Repository secret***  
+     - `HF_TOKEN` → set its value to the token you created  
+   - **Variables tab:** add 2 ***Repository variables***  
+     - `HF_USER` → your Hugging Face username  
+     - `HF_REPO` → the name of your Hugging Face Space
+
+6. ▶️ **Run the workflow**  
+   - Go to ***Actions*** → select ***Deploy to Hugging Face Space*** → click ***Run workflow***
+
+7. 🌐 **Use your Space**  
+   - Once the Space is running, copy the ***manifest.json link***  
+   - Paste it directly into ***Stremio***
+
+⚠️ **Note:** If you make updates, simply click **Sync Changes** in your GitHub repo. The workflow will automatically redeploy the changes via GitHub Actions.
