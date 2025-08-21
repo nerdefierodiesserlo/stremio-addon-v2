@@ -9,7 +9,6 @@ import FileStore from 'session-file-store';
 import favicon from 'serve-favicon';
 import { Request, Response, NextFunction } from 'express';
 import { BASE_DIR } from '@config/paths';
-
 import indexRouter from '@routes/index';
 
 const app = express();
