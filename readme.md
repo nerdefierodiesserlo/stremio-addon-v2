@@ -1,6 +1,10 @@
 # IHaveAStream
 
 This is a **Stremio addon** that integrates external video streams into the platform.  
+It was created with the idea of making sports content a little more accessible to everyone, given the often unreasonable rise in subscription costs.  
+
+However, this is an **unstable and hard-to-maintain solution**: streams may change or stop working at any time.  
+Apologies in advance for any possible malfunctions.
 
 🔹 **Current functionality**  
 - Retrieves **m3u8** video streams from [Rojadirecta](https://www.rojadirecta.eu).  
@@ -17,7 +21,10 @@ The project is currently in its early stage: it supports a single provider, but 
 ---
 
 ## Disclaimer
-This addon does not host or distribute any content directly. It only collects streams already publicly available online through the integrated providers.  
+This addon does not host or distribute any content directly: it only collects and organizes streams already publicly available online through the integrated providers.  
+
+The use of these sources is at the user’s sole discretion.  
+Any misuse, including unauthorized access to copyrighted material, is the **sole responsibility of the user**, not of the addon or its developers.
 
 ---
 
