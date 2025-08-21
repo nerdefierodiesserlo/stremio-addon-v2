@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
 import session from 'express-session';
+import FileStore from 'session-file-store';
 import favicon from 'serve-favicon';
 import { Request, Response, NextFunction } from 'express';
 import { BASE_DIR } from '@config/paths';
@@ -16,7 +17,11 @@ app.set('trust proxy', 1);
 
 app.use(favicon(path.join(BASE_DIR, 'src/public/images', 'favicon.ico')));
 console.log(path.join(BASE_DIR, 'src/public/images', 'favicon.ico'))
+
+const FileStoreClass = FileStore(session);
+
 app.use(session({
+  store: new FileStoreClass({ path: path.join(BASE_DIR, 'data', 'sessions') }),
   secret: process.env.SESSION_SECRET || 'default_secret',
   resave: false,
   saveUninitialized: false,

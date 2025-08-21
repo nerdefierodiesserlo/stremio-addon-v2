@@ -1,11 +1,10 @@
 #!/usr/bin/env ts-node
 
-import path from "path";
 import http from "http";
 import dotenv from "dotenv";
-import app from "@src/app";
-
 dotenv.config({ path: ['.env.local', '.env'] });
+
+import app from "@src/app";
 
 function normalizePort(val: string | undefined): number | string | false {
   if (!val) return 8000;

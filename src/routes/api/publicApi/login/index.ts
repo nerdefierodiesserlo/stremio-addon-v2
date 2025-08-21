@@ -4,10 +4,10 @@ const router = Router();
 
 router.post(
   '/',
-  (req: Request, res: Response, next) => {
+  (req, res, next) => {
     express.urlencoded({ extended: true })(req, res, next);
   },
-  (req: Request & { session: any }, res: Response) => {
+  (req: Request, res: Response) => {
     const { username, password } = req.body;
     if (
       process.env.USE_CREDENTIALS === "true" &&
