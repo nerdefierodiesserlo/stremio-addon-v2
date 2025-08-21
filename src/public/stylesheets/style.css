@@ -1,0 +1,244 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+/* Base Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    max-width: 800px;
+    background: #1e1e1e;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+/* Titles */
+h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #ff9800;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #444;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    color: #fff;
+}
+
+th {
+    background: #333;
+    font-weight: 700;
+}
+
+td {
+    background: #2a2a2a;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    padding: 12px;
+    border: 2px solid #444;
+    border-radius: 5px;
+    background: #333;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Buttons */
+button {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #e68900;
+}
+
+/* Input Group */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Error Messages */
+.error-message {
+    color: #ff4d4d;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* Toast Container */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Toast Styles */
+.toast {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s forwards;
+    transition: opacity 0.5s;
+    opacity: 1;
+}
+
+.toast.success {
+    background-color: #4caf50;
+}
+
+.toast.error {
+    background-color: #f44336;
+}
+#service-main-container{
+    display: flex; 
+    flex-direction: column; 
+    width: 100%; 
+    margin: 50px;
+    gap: 20px;
+}
+#service-container{
+    display: flex;
+    flex-direction: column;
+}
+#service-table{
+    display: flex;
+}
+#service-accordion {
+    background: #2a2a2a;
+    border: 2px solid #444;
+    display: none;
+}
+#service-accordion .service-accordion-content:not(:last-child) {
+    border-bottom: 2px solid #444;
+}
+.accordion {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 15px;
+    background: #2a2a2a;
+    text-align: left;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background 0.3s;
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header:hover {
+    background: #2a2a2a;
+}
+
+.accordion-header .arrow {
+    transition: transform 0.3s;
+}
+
+.accordion-header.active .arrow {
+    transform: rotate(90deg);
+}
+
+.accordion-content {
+    transform: translateZ(0);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    background: #2a2a2a;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-inner {
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.accordion-content {
+    border-top: none;
+    margin: 0;
+    padding: 0;
+}
+
+.accordion-content input {
+    margin: 0;
+}
+
+/* Toast Animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    #service-accordion {
+        display: flex;
+        flex-direction: column;
+    }
+    #service-table{
+        display: none;
+    }
+}

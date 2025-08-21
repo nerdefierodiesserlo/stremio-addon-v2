@@ -1,0 +1,46 @@
+{
+  "name": "stremio-addon-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/www.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register ./bin/www"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cheerio": "^0.22.35",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.3",
+    "@types/express-session": "^1.18.2",
+    "@types/m3u8-parser": "^7.2.3",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.3.0",
+    "@types/puppeteer": "^5.4.7",
+    "@types/serve-favicon": "^2.5.7",
+    "@types/xml2js": "^0.4.14",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "cheerio": "^1.1.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "m3u8-parser": "^7.2.0",
+    "morgan": "^1.10.1",
+    "pug": "^3.0.3",
+    "puppeteer": "^24.17.0",
+    "serve-favicon": "^2.5.1",
+    "tsconfig-paths": "^4.2.0",
+    "xml2js": "^0.6.2"
+  }
+}

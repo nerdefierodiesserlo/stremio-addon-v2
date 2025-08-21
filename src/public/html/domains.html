@@ -1,0 +1,128 @@
+<!-- views/index.html -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione servizi</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="service-main-container">
+        <div id="service-container">
+            <h1>Gestione servizi</h1>
+            <div id="service-table">
+                <table class="service-table">
+                    <thead>
+                        <tr>
+                            <th>Codice</th>
+                            <th>Base URL</th>
+                            <th>Azioni</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="domain-table-body">
+                    </tbody>
+                </table>
+            </div>
+            <div id="service-accordion">
+            </div>
+        </div>
+        <div id="top-bar">
+            <button id="home-button" onclick="window.location.href='/'">🏠 Home</button>
+        </div>
+    </div>
+    <div id="toast-container"></div>
+    <script>
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerText = message;
+            document.getElementById('toast-container').appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+
+        async function fetchDomains() {
+            let response = await fetch('/api/domains');
+            let domains = await response.json();
+            let tableBody = document.getElementById('domain-table-body');
+            let accordionBody = document.getElementById('service-accordion');
+            tableBody.innerHTML = '';
+
+            domains.forEach(domain => {
+                let isActive = domain.active === "true";
+                let row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${domain.code}</td>
+                    <td><input type="text" value="${domain.baseURL}" id="input-${domain.code}"></td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" id="active-${domain.code}" ${isActive ? 'checked' : ''}>
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                    <td><button onclick="updateDomain('${domain.code}')">Salva</button></td>
+                `;
+                tableBody.appendChild(row);
+
+                let div = document.createElement('div');
+                div.classList.add('service-accordion-content');
+                div.innerHTML = `
+                    <div class="accordion-item">
+                        <button class="accordion-header">${domain.code}<span class="arrow">\></span></button>
+                        <div class="accordion-content">
+                            <div class="accordion-inner">
+                                <div class="input-div">
+                                    <input type="text" value="${domain.baseURL}" id="input-${domain.code}">
+                                </div>
+                                <div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="active-${domain.code}" ${domain.active ? 'checked' : ''}>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <button onclick="updateDomain('${domain.code}')">Salva</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                accordionBody.appendChild(div);
+            });
+            let headers = document.querySelectorAll('.accordion-header');
+            headers.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    let content = this.nextElementSibling;
+                    content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+                });
+            });
+        }
+
+        async function updateDomain(code) {
+            let input = document.getElementById(`input-${code}`);
+            let baseURL = input.value;
+            let isActive = document.getElementById(`active-${code}`).checked;
+            let active = isActive ? "true" : "false";
+
+
+            let response = await fetch('/api/domains/'+code, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ baseURL, active })
+            });
+            if (response.ok) {
+                showToast('Dominio aggiornato con successo!', 'success');
+            } else {
+                showToast('Errore durante l\'aggiornamento del dominio.', 'error');
+            }
+        }
+        fetchDomains();
+    </script>
+</body>
+</html>

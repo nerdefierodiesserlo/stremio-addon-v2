@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHaveAStream</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        function copyToClipboard() {
+            const input = document.getElementById("manifest-url");
+            input.select();
+            input.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(input.value).then(() => {
+                const btn = document.getElementById("copy-btn");
+                btn.innerText = "Copiato!";
+                setTimeout(() => btn.innerText = "Copia", 2000);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>IHaveAStream</h1>
+        <div class="input-group">
+            <input type="text" id="manifest-url" value="http://localhost:8002/manifest.json" readonly>
+            <button id="copy-btn" onclick="copyToClipboard()">Copia</button>
+        </div>
+        <br>
+        <button onclick="window.location.href='/domains'">Gestisci servizi</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+    "id": "community.ihaveastream",
+    "description": "IHaveAStream è un addon per Stremio che ti permette di trovare e riprodurre film, serie TV e canali live in streaming",
+    "version": "1.0.0",
+    "name": "IHaveAStream",
+    "resources": ["stream", "catalog", "meta"],
+    "types": ["tv"],
+    "idPrefixes": ["tt", "havestream"],
+    "catalogs": [
+        {
+            "type": "tv",
+            "id": "tv_channels",
+            "name": "Canali Live TV"
+        }
+    ],
+    "logo": "https://i.ibb.co/Fqq6zdGG/umbFlix.png"
+}

@@ -1,0 +1,37 @@
+<!-- views/login.html -->
+ <script>
+    window.onload = function() {
+        let urlParams = new URLSearchParams(window.location.search);
+        let error = urlParams.get('error');
+        if (error === 'invalid') {
+            let errorMessage = document.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.style.display = 'block';
+            }
+        }
+    }
+ </script>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form action="/api/login" method="POST">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Accedi</button>
+            <div class="error-message" style="display:none">
+                Credenziali non valide! Riprova.
+            </div>
+        </form>
+    </div>    
+</body>
+</html>
