@@ -12,8 +12,8 @@
             input.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(input.value).then(() => {
                 const btn = document.getElementById("copy-btn");
-                btn.innerText = "Copiato!";
-                setTimeout(() => btn.innerText = "Copia", 2000);
+                btn.innerText = "copied!";
+                setTimeout(() => btn.innerText = "Copy", 2000);
             });
         }
     </script>
@@ -22,11 +22,11 @@
     <div class="container">
         <h1>IHaveAStream</h1>
         <div class="input-group">
-            <input type="text" id="manifest-url" value="http://localhost:8002/manifest.json" readonly>
-            <button id="copy-btn" onclick="copyToClipboard()">Copia</button>
+            <input type="text" id="manifest-url" value="{{_DOMAIN_}}/manifest.json" readonly>
+            <button id="copy-btn" onclick="copyToClipboard()">Copy</button>
         </div>
         <br>
-        <button onclick="window.location.href='/domains'">Gestisci servizi</button>
+        <button onclick="window.location.href='/domains'">Manage service</button>
     </div>
 </body>
 </html>

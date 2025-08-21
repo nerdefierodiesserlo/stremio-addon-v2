@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestione servizi</title>
+    <title>Manage services</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div id="service-main-container">
         <div id="service-container">
-            <h1>Gestione servizi</h1>
+            <h1>Manage services</h1>
             <div id="service-table">
                 <table class="service-table">
                     <thead>
                         <tr>
-                            <th>Codice</th>
+                            <th>Code</th>
                             <th>Base URL</th>
-                            <th>Azioni</th>
+                            <th>Enabled</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -85,7 +85,7 @@
                                         <span class="slider"></span>
                                     </label>
                                 </div>
-                                <button onclick="updateDomain('${domain.code}')">Salva</button>
+                                <button onclick="updateDomain('${domain.code}')">Save</button>
                             </div>
                         </div>
                     </div>
@@ -117,9 +117,9 @@
                 body: JSON.stringify({ baseURL, active })
             });
             if (response.ok) {
-                showToast('Dominio aggiornato con successo!', 'success');
+                showToast('Domain successfully updated!', 'success');
             } else {
-                showToast('Errore durante l\'aggiornamento del dominio.', 'error');
+                showToast('Error updating domain.', 'error');
             }
         }
         fetchDomains();
