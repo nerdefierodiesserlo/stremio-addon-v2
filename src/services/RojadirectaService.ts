@@ -66,7 +66,6 @@ export class RojadirectaService extends AbstractStreamingService {
             return {
                 id: `havestream-${this.serviceCode}-${index}`,
                 name: `(${time}) ${title}`,
-                description: 'Nessuna descrizione disponibile',
                 type: 'tv',
                 posterShape: 'square'
             };
@@ -76,11 +75,10 @@ export class RojadirectaService extends AbstractStreamingService {
     }
 
     async getTvChannelMeta(id: string): Promise<Meta> {
-        const mediaId = id.replace(`havestream-${this.serviceCode}`, "");
+        const mediaId = id.replace(`havestream-${this.serviceCode}-`, "");
         let meta = {
             id,
-            name: `Nessun nome trovato`,
-            description: 'Nessuna descrizione disponibile',
+            name: `No name found`,
             type: 'tv',
             poster: null,
             genres: null

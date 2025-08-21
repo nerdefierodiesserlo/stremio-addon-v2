@@ -1,22 +1,17 @@
 import UserSession from '@models/UserSession';
 import axios, { AxiosInstance } from 'axios';
-import cheerio from 'cheerio';
-import m3u8Parser from 'm3u8-parser';
+import * as cheerioLib from "cheerio";
 import LogService from './LogService';
-import xml2js from 'xml2js';
 import { DomainService } from './DomainService';
 import StreamObject from '@models/StreamObject';
 import { Meta } from '@models/Meta';
 import { M3U8Object } from '@models/M3U8Object';
 
-const parser = new xml2js.Parser();
-
 export abstract class AbstractStreamingService {
     externalId: string | null = null;
     seasonNumber: string | null = null;
     episodeNumber: string | null = null;
-    cheerio = cheerio;
-    m3u8Parser = m3u8Parser;
+    cheerio = cheerioLib;
     logService = LogService;
     client: AxiosInstance;
     userSession: UserSession;
